@@ -1,4 +1,4 @@
-# solid-task-app
+# Solid Task App
 
 This app is based on the great work of Alain Burgeois's and his introduction to Solid with his "Solid Task App",  I just added more of an "app" looking ui
 
