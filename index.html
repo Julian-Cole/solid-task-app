@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="theme-color" content="#ffffff"/>
+        <link rel="manifest" href="manifest.json">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
+        <title>Solid Tasks</title>
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    </head>
+
+    <body>
+        
+        <script>
+            navigator.serviceWorker.register('./manifest_serviceworker.js', { scope: './' })
+            .then(function (registration)
+            {
+              console.log('Service worker registered successfully');
+            }).catch(function (e)
+            {
+              console.error('Error during service worker registration:', e);
+            });
+        </script>
+        
+        <!-- header -->
+        <div id="div_top_menu_paint" style="position:absolute; left:0px; top:0px; width:320px; height:58px; background-image: url('images/top_menu_paint.png');"> </div>
+            <div id="div_top_manu_solid_logo" style="position:absolute; left:14px; top:15px; width:32px; height:29px; background-image: url('images/solid_logo_sm.png');"> </div>
+            <div id="div_top_manu_title" style="position:absolute; left:58px; top:16px; width:auto; height:29px;">
+                <b>Solid</b> Tasks 
+            </div>
+            <div id="div_top_menu_account" onclick="javascript:app.user.account.onAccountclicked();" style="cursor:pointer; position:absolute; left:150px; top:15px; width:29px; height:29px; background-image: url('images/logged_out.png');"> </div>
+            
+        
+        <!-- footer -->
+        <div id="div_footer_bar" style="position:absolute; left:0px; top:500px; width:320px; height:59px; background-image: url('images/footer_bar.png');"> </div>
+                
+            <div id="div_footer_task_count" style="position:absolute; left:58px; top:16px; width:auto; height:29px;">
+                <img src="images/footer_tick.png"/>
+                <span id="spTaskCount" style="font-size:15px; vertical-align:2px"><!-- 5 / 10 --></span>
+            </div>
+        
+            <div id="div_footer_add_task" onclick="javascript:createTask();" style="cursor:pointer; position:absolute; left:150px; top:500px; width:53px; height:53px; background-image: url('images/add_task.png');"> </div>
+            
+            <div id="div_footer_toggle_task_vis" style="position:absolute; left:58px; top:16px; width:auto; height:29px;">
+                <img style="margin-right:3px" src="images/footer_tick.png"/>
+                <img id="imgToggleCompleted" onclick="javascript:app.user.tasks.toggleCompletedTasks();" src="images/view_completed_tasks.png"/>
+            </div>
+
+            
+        <div id="loading">
+            <p>Loading...</p>
+        </div>
+        
+        
+        <!-- LOGGED OUT -->
+        <div id="auth-guest" style="display:none; margin-top:60px;">
+            <p>Hi There!</p>
+            <p>This is a simple Solid Task App.</p>
+            <p>Hit the icon top-right to log-in with Solid.</p>
+            <br>
+            <p>
+                <small>Don't have a Solid Pod? <a href="https://solidproject.org/users/get-a-pod"> Get a Solid Pod</a>.</small>
+            </p>
+        </div>
+
+        
+        <!-- LOGGED IN -->
+        <div id="auth-user" hidden style="position:absolute; left:17px; top:80px;">
+            
+            <div id="auth-user-your-tasks-msg" style="margin-bottom:25px"></div>
+            
+            <div id="div_tasks_container" style="position: relative; width:auto; height:auto;">
+                <!-- task go in here! -->
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/@inrupt/solid-client-authn-browser@1.11.2/dist/solid-client-authn.bundle.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/solid-file-client@1.2.5/dist/window/solid-file-client.bundle.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
+        <script src="uix-arrange.js"></script>
+        <script src="uix-init.js"></script>
+        <script src="solid-code.js"></script>
+        
+    </body>
+
+</html>

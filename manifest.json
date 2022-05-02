@@ -1,0 +1,16 @@
+{
+  "name": "Solid Tasks",
+  "short_name": "Solid Tasks",
+  "lang": "en-US",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "white",
+  "theme_color": "white",
+    "icons": [
+        {
+          "src": "manifest-app-icon.png",
+          "type": "image/png",
+          "sizes": "512x512"
+        }
+    ]
+}
