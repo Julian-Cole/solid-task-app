@@ -6,4 +6,4 @@ Note: The app ui doesn't really work visually in a full screen web browser,  so 
 
 The Demo is [Here](https://julian-cole.github.io/solid-task-app/)  (note: swipe-left to bring up the delete option)
 
-<img src="Screenshot_20220502-225232_Chrome.jpg" alt="alt text" width="500"/>
+<img src="Screenshot_20220502-225232_Chrome.jpg" alt="alt text" width="320"/>
