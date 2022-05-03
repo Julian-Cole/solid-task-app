@@ -10,3 +10,7 @@ The demo is [here](https://julian-cole.github.io/solid-task-app/)  (note: swipe-
 
 
 <img src="Screenshot_20220503-101407_Chrome.jpg" alt="Solid Task App" width="320"/>
+
+<img src="20220503_113703.jpg" alt="Solid Task App" width="320"/>
+
+<img src="20220503_114013.jpg" alt="Solid Task App" width="320"/>
