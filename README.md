@@ -1,11 +1,11 @@
 # Solid Task App
 
-This app is based on the great work of Alain Burgeois's and his introduction to Solid with his "Solid Task App";  I just changed the UI a bit!
+This app is based on the great work of Alain Burgeois's and his introduction to Solid with his "Solid Task App";  I just added a different UI over it!
 
-Of all the Solid Apps i'd seen this one was written in a particular way that didn't need any fussy build tools or special library installers.
+Of all the Solid Apps i'd looked over this one was written in a particular way that didn't need any fussy build tools or special library installers. It was just nice to play around with the code.
 
-Note: The app ui doesn't really work visually in a full screen web browser,  so I suggest you install it on your phone and try it out;  to install on your phone, open the demo link below,  then on Android Chome select from the Chrome menu option "Add to Home Screen",  this will allow you to open the app from your phone home screen. Unfortunatly i don't have an Apple phone to test but it might be fairly similar.
+Note: The app is for use only on a phone, to install on your phone,  open the demo link below,  then on Android Chome select from the Chrome menu option "Add to Home Screen",  this will add a little icon onto your phone home screen and allow you to open the app like your other apps.  Unfortunatly i don't have an Apple phone to test but it might be fairly similar.
 
-The demo is [HERE](https://julian-cole.github.io/solid-task-app/)  (note: swipe-left to bring up the delete option)
+The demo is [here](https://julian-cole.github.io/solid-task-app/)  (note: swipe-left to bring up the delete option)
 
 <img src="Screenshot_20220502-225232_Chrome.jpg" alt="alt text" width="320"/>
