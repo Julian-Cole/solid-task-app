@@ -1,6 +1,15 @@
+// version 1.1
 
 var app = {
     size:{ w: -1, h: -1 },
+    ui:{
+        preloader_Show: function() {
+            $("#loading").css("display", "block");
+        },
+        preloader_Hide: function() {
+            $("#loading").css("display", "none");
+        }
+    },
     user: {
         account: {
             isLoggedIn: false,
@@ -39,13 +48,8 @@ var app = {
             onDeleteTaskClicked: function(taskUrl, index) {
                 console.log("onDeleteTaskClicked()->FIRED!, " + "taskUrl="+taskUrl+", index="+index);
                 deleteTask(taskUrl, index);
-                // remove the task from the ui list
-                if( $("#div_tasks_container").children().length > 0 ) {
-                    $("#div_tasks_container").children()[index-1].remove();
-                }
-                else {
-                    $("#div_tasks_container").remove();
-                }
+                // remove from the url
+                $("#"+(taskUrl).hashCode()).remove();
                 // we need to update the task count etc
                 app.user.tasks._taskTotal--;
                 app.user.tasks.setTaskCompleteCount(app.user.tasks._taskCompleteCount, app.user.tasks._taskTotal);
@@ -109,7 +113,7 @@ function uix_init() {
     trace("Viewport size: " + app.size.w + " x " + app.size.h );    
 }
 
-// this was hacked on..
+
 var box, position, step;
 
 function _slideLeft() {
@@ -199,4 +203,45 @@ function handleTouchMove(evt) {
     /* reset values */
     xDown = null;
     yDown = null;                                             
+};
+
+
+function uix_arrange() {
+    trace("uix_arrange() -> FIRED!");
+    
+    // Top Menu Paint
+    $("#div_top_menu_paint").css( "width", app.size.w + "px" );    
+        
+        // account
+        //$("#div_top_menu_account").css( "top", app.size.h - 37 + "px" );
+        $("#div_top_menu_account").css( "left", app.size.w - 45 + "px" );   
+
+    // Footer..
+    $("#div_footer_bar").css( "top", app.size.h - 59 + "px" );
+    $("#div_footer_bar").css( "width", app.size.w + "px" );
+    
+        // task count
+        $("#div_footer_task_count").css( "top", app.size.h - 40 + "px" );
+        $("#div_footer_task_count").css( "left", ((app.size.w/12)*1 + "px" ));
+        
+        // Add task
+        $("#div_footer_add_task").css( "top", app.size.h - 84 + "px" );
+        $("#div_footer_add_task").css( "left", ((app.size.w - 54)/2 + "px" ));
+    
+        // Toggle task vis
+        $("#div_footer_toggle_task_vis").css( "top", app.size.h - 40 + "px" );
+        $("#div_footer_toggle_task_vis").css( "left", (app.size.w /12) * 9 + "px" );
+}
+
+
+
+String.prototype.hashCode = function() {
+  var hash = 0, i, chr;
+  if (this.length === 0) return hash;
+  for (i = 0; i < this.length; i++) {
+    chr   = this.charCodeAt(i);
+    hash  = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
 };

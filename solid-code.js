@@ -260,20 +260,24 @@ function escapeText(text) {
 
 
 async function main() {
+    app.ui.preloader_Show();
     var user = await restoreSession();
     app.user.account.isLoggedIn = false;
     app.user.account.showUserAsLoggedOut();
-    document.getElementById('loading').setAttribute('hidden', '');
+    
     if (!user) {
         // show the get yourself a solid account!
         $("#auth-guest").css("display", "block");
+        app.ui.preloader_Hide();
         return;
     }
     document.getElementById('auth-user').removeAttribute('hidden');
     app.user.account.isLoggedIn = true;
     app.user.account.showUserAsLoggedIn();
     $("#auth-guest").css("display", "none");
+    app.ui.preloader_Show();
     await loadSolidTasks();
+    app.ui.preloader_Hide();
 }
 
 
@@ -299,7 +303,7 @@ async function loadSolidTasks() {
         app.user.tasks.setTaskCompleteCount(completed, total);   
     }
     catch (err) {
-        console.log("ERR=" + err);
+        console.log("err=" + err);
     }
     
     if(tasks == null){
@@ -307,17 +311,9 @@ async function loadSolidTasks() {
     }
     else {
         $("#auth-user-your-tasks-msg").html("Your tasks..");
-        // we need to add the events on here..
         trace("loadSolidTasks total="+total);
-        for (var i = 0; i < total; i++) {
-            $("#div_swipe_widget_base"+(i+1)).css( "left", (app.size.w - 134) + "px" );
-            $("#div_swipe_widget_reveal"+(i+1)).css( "left", (app.size.w - 60) + "px" );
-            $("#div_swipe_widget"+(i+1)).css( "left", (app.size.w - 282) + "px" );
-            document.getElementById("div_swipe_widget"+(i+1)).addEventListener('touchstart', handleTouchStart, false);        
-            document.getElementById("div_swipe_widget"+(i+1)).addEventListener('touchmove', handleTouchMove, false);
-        }
     }    
-    return new Date().getTime();
+    return;
 }
 
 
@@ -351,17 +347,19 @@ async function createTask() {
     console.log("createTask()->FIRED!");
     var description = prompt('Task description');
     if (!description) { return; }
+    app.ui.preloader_Show();
     var task = await performTaskCreation(description);
     app.user.tasks.addNewTask(task);
+    app.ui.preloader_Hide();
 }
 
 
 async function updateTask(taskUrl, state, index) {
     console.log("updateTask()->FIRED!, taskUrl=" + taskUrl + ", state="+state+", index="+index);
-    
     // mark as complete in the ss solid task doc
+    app.ui.preloader_Show();
     await performTaskUpdate(taskUrl, state);
-    
+    app.ui.preloader_Hide();
     // we need to update the icon to ticked or not ticked
     if(state) {
         // complete!
@@ -381,14 +379,17 @@ async function updateTask(taskUrl, state, index) {
 
 
 async function deleteTask(taskUrl, index) {
+    app.ui.preloader_Show();
     await performTaskDeletion(taskUrl);    
+    app.ui.preloader_Hide();
 }
+
 
 function appendTaskItem(task, index) {
     var taskItem = "";
     taskItem = `
-                <!-- shadow base -->
-            <div style="position:relative; width:300px; height:45px;">
+            <!-- shadow base -->
+            <div id="`+(task.url).hashCode()+`" style="position:relative; width:300px; height:45px;">
                 <div id="div_swipe_widget_base`+index+`" style="pointer-events: none; position:absolute; left:186px; top:-3px; width:102px; height:40px; visibility:hidden-">
                     <img src="images/delete_reveal2.png"/>
                 </div>
@@ -408,9 +409,12 @@ function appendTaskItem(task, index) {
                         ${task.description}
                     </span>
                 </div>   
-            <div>
-    `;
+            <div>`;
    $("#div_tasks_container").append(taskItem);
+   // we need to reposition these!
+   $("#div_swipe_widget_base"+(index)).css( "left", (app.size.w - 134) + "px" );
+   $("#div_swipe_widget_reveal"+(index)).css( "left", (app.size.w - 60) + "px" );
+   $("#div_swipe_widget"+(index)).css( "left", (app.size.w - 282) + "px" );
 }
 
 // ------------------------------------------------------------------
