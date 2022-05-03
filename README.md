@@ -9,4 +9,4 @@ Note: The app is for use only on a phone, to install on your phone,  open the de
 The demo is [here](https://julian-cole.github.io/solid-task-app/)  (note: swipe-left to bring up the delete option)
 
 
-<img src="Screenshot_20220502-225232_Chrome.jpg" alt="Solid Task App" width="320"/>
+<img src="Screenshot_20220503-101407_Chrome.jpg" alt="Solid Task App" width="320"/>
