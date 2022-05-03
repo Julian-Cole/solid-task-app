@@ -1,6 +1,6 @@
 # Solid Task App
 
-This app is based on the great work of Alain Burgeois's and his introduction to Solid with his "Solid Task App";  I just added a different UI over it!
+This app is based on this nice and simple solid task app  https://github.com/0dataapp/hello ; I just added a different UI over it!
 
 Of all the Solid Apps i'd looked over this one was written in a particular way that didn't need any fussy build tools or special library installers. It was just nice to play around with the code.
 
