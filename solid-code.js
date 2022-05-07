@@ -300,7 +300,7 @@ async function loadSolidTasks() {
             total++;
             appendTaskItem(task , total);
         }
-        app.user.tasks.setTaskCompleteCount(completed, total);   
+        app.user.tasks.setTaskCompleteCount(completed, total);
     }
     catch (err) {
         console.log("err=" + err);

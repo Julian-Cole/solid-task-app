@@ -1,4 +1,4 @@
-// version 1.1
+// version 1.2
 
 var app = {
     size:{ w: -1, h: -1 },
@@ -231,6 +231,8 @@ function uix_arrange() {
         // Toggle task vis
         $("#div_footer_toggle_task_vis").css( "top", app.size.h - 40 + "px" );
         $("#div_footer_toggle_task_vis").css( "left", (app.size.w /12) * 9 + "px" );
+        
+    $("#div_tasks_container").css( "width", app.size.w - 22 + "px" ).css( "height", app.size.h - 225 + "px" ).css({overflowY:'auto',overflowX: 'hidden'});
 }
 
 
